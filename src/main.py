@@ -12,6 +12,13 @@ from book import (
     delete_book,
     search_book
 )
+from member import (
+    add_member,
+    list_members,
+    update_member,
+    delete_member,
+    search_member
+)
 
 
 def main():
@@ -24,12 +31,21 @@ def main():
         print("LIBRARY MANAGEMENT SYSTEM")
         print("==========================")
 
+        print("BOOK OPERATIONS")
         print("1. Add Book")
         print("2. List Books")
         print("3. Update Book")
         print("4. Delete Book")
         print("5. Search Book")
-        print("6. Exit")
+
+        print("\nMEMBER OPERATIONS")
+        print("6. Add Member")
+        print("7. List Members")
+        print("8. Update Member")
+        print("9. Delete Member")
+        print("10. Search Member")
+
+        print("\n0. Exit")
 
         choice = input("\nSelect an option: ")
 
@@ -83,6 +99,53 @@ def main():
             search_book(book_id)
 
         elif choice == "6":
+
+            name = input("Member Name: ")
+            email = input("Email: ")
+
+            add_member(name, email)
+
+        elif choice == "7":
+
+            list_members()
+
+        elif choice == "8":
+
+            member_id = int(
+                input("Member ID: ")
+            )
+
+            new_name = input(
+                "New Name: "
+            )
+
+            new_email = input(
+                "New Email: "
+            )
+
+            update_member(
+                member_id,
+                new_name,
+                new_email
+            )
+
+        elif choice == "9":
+
+            member_id = int(
+                input("Member ID: ")
+            )
+
+            delete_member(member_id)
+
+        elif choice == "10":
+
+            member_id = int(
+                input("Member ID: ")
+            )
+
+            search_member(member_id)
+        
+        elif choice == "0":
 
             print("Program terminated.")
             break
