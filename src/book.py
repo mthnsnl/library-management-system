@@ -1,0 +1,3 @@
+"""
+Book management module
+"""

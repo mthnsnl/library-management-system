@@ -1,0 +1,3 @@
+"""
+Member management module
+"""
