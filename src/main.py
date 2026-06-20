@@ -19,6 +19,12 @@ from member import (
     delete_member,
     search_member
 )
+from loan import (
+    borrow_book,
+    return_book,
+    list_active_loans,
+    list_loan_history
+)
 
 
 def main():
@@ -44,6 +50,13 @@ def main():
         print("8. Update Member")
         print("9. Delete Member")
         print("10. Search Member")
+
+        print("\nLOAN OPERATIONS")
+
+        print("11. Borrow Book")
+        print("12. Return Book")
+        print("13. List Active Loans")
+        print("14. Loan History")
 
         print("\n0. Exit")
 
@@ -144,6 +157,39 @@ def main():
             )
 
             search_member(member_id)
+
+        elif choice == "11":
+
+            book_id = int(
+                input("Book ID: ")
+            )
+
+            member_id = int(
+                input("Member ID: ")
+            )
+
+            borrow_book(
+                book_id,
+                member_id
+            )
+
+        elif choice == "12":
+
+            loan_id = int(
+                input("Loan ID: ")
+            )
+
+            return_book(
+                loan_id
+            )
+
+        elif choice == "13":
+
+            list_active_loans()
+
+        elif choice == "14":
+
+            list_loan_history()
         
         elif choice == "0":
 
