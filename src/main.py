@@ -26,6 +26,79 @@ from loan import (
     list_loan_history
 )
 
+"""
+CLI Utility Functions
+
+These functions improve user interaction.
+"""
+
+def print_header():
+    """
+    Prints application header.
+    """
+
+    print("\n" + "=" * 50)
+    print("      LIBRARY MANAGEMENT SYSTEM")
+    print("=" * 50)
+
+
+def pause():
+    """
+    Waits for user input before continuing.
+    """
+
+    input("\nPress ENTER to continue...")
+
+
+def get_integer(message):
+    """
+    Safely receives integer input.
+
+    Returns:
+        int
+    """
+
+    while True:
+
+        try:
+
+            value = int(input(message))
+
+            return value
+
+        except ValueError:
+
+            print("Please enter a valid number.")
+
+def display_menu():
+    """
+    Displays main menu.
+    """
+
+    print_header()
+
+    print("\nBOOK OPERATIONS")
+    print("1  - Add Book")
+    print("2  - List Books")
+    print("3  - Update Book")
+    print("4  - Delete Book")
+    print("5  - Search Book")
+
+    print("\nMEMBER OPERATIONS")
+    print("6  - Add Member")
+    print("7  - List Members")
+    print("8  - Update Member")
+    print("9  - Delete Member")
+    print("10 - Search Member")
+
+    print("\nLOAN OPERATIONS")
+    print("11 - Borrow Book")
+    print("12 - Return Book")
+    print("13 - Active Loans")
+    print("14 - Loan History")
+
+    print("\nSYSTEM")
+    print("0  - Exit")
 
 def main():
 
@@ -33,60 +106,44 @@ def main():
 
     while True:
 
-        print("\n==========================")
-        print("LIBRARY MANAGEMENT SYSTEM")
-        print("==========================")
-
-        print("BOOK OPERATIONS")
-        print("1. Add Book")
-        print("2. List Books")
-        print("3. Update Book")
-        print("4. Delete Book")
-        print("5. Search Book")
-
-        print("\nMEMBER OPERATIONS")
-        print("6. Add Member")
-        print("7. List Members")
-        print("8. Update Member")
-        print("9. Delete Member")
-        print("10. Search Member")
-
-        print("\nLOAN OPERATIONS")
-
-        print("11. Borrow Book")
-        print("12. Return Book")
-        print("13. List Active Loans")
-        print("14. Loan History")
-
-        print("\n0. Exit")
-
-        choice = input("\nSelect an option: ")
+        display_menu()
+        
+        choice = get_integer("\nSelect option: ")
 
         # CREATE
 
-        if choice == "1":
+        if choice == 1:
+
+            print("\nADD BOOK")
 
             title = input("Title: ")
             author = input("Author: ")
-            year = int(input("Year: "))
+            year = get_integer("Year: ")
 
             add_book(title, author, year)
 
+            pause()
+
         # READ
 
-        elif choice == "2":
+        elif choice == 2:
+
+            print("\nLIST BOOKS")
 
             list_books()
 
+            pause()
+
         # UPDATE
 
-        elif choice == "3":
+        elif choice == 3:
 
-            book_id = int(input("Book ID: "))
+            print("\nUPDATE BOOK")
 
+            book_id = get_integer("Book ID: ")
             title = input("New Title: ")
             author = input("New Author: ")
-            year = int(input("New Year: "))
+            year = get_integer("New Year: ")
 
             update_book(
                 book_id,
@@ -95,46 +152,64 @@ def main():
                 year
             )
 
+            pause()
+
         # DELETE
 
-        elif choice == "4":
+        elif choice == 4:
 
-            book_id = int(input("Book ID: "))
+            print("\nDELETE BOOK")
 
-            delete_book(book_id)
+            book_id = get_integer("Book ID: ")
+
+            confirm = input("Are you sure? (y/n): ")
+
+            if confirm.lower() == "y":
+
+                delete_book(book_id)
+
+            pause()
 
         # SEARCH
 
-        elif choice == "5":
+        elif choice == 5:
 
-            book_id = int(input("Book ID: "))
+            print("\nSEARCH BOOK")
+
+            book_id = get_integer("Book ID: ")
 
             search_book(book_id)
 
-        elif choice == "6":
+            pause()
+
+        elif choice == 6:
+
+            print("\nADD MEMBER")
 
             name = input("Member Name: ")
             email = input("Email: ")
 
             add_member(name, email)
 
-        elif choice == "7":
+            pause()
+
+        elif choice == 7:
+
+            print("\nLIST MEMBERS")
 
             list_members()
 
-        elif choice == "8":
+            pause()
 
-            member_id = int(
-                input("Member ID: ")
-            )
+        elif choice == 8:
 
-            new_name = input(
-                "New Name: "
-            )
+            print("\nUPDATE MEMBER")
 
-            new_email = input(
-                "New Email: "
-            )
+            member_id = get_integer("Member ID: ")
+
+            new_name = input("New Name: ")
+
+            new_email = input("New Email: ")
 
             update_member(
                 member_id,
@@ -142,63 +217,86 @@ def main():
                 new_email
             )
 
-        elif choice == "9":
+            pause()
 
-            member_id = int(
-                input("Member ID: ")
-            )
+        elif choice == 9:
 
-            delete_member(member_id)
+            print("\nDELETE MEMBER")
 
-        elif choice == "10":
+            member_id = get_integer("Member ID: ")
 
-            member_id = int(
-                input("Member ID: ")
-            )
+            confirm = input("Are you sure? (y/n): ")
+
+            if confirm.lower() == "y":
+
+                delete_member(member_id)
+
+            pause()
+
+        elif choice == 10:
+
+            print("\nSEARCH MEMBER")
+
+            member_id = get_integer("Member ID: ")
 
             search_member(member_id)
 
-        elif choice == "11":
+            pause()
 
-            book_id = int(
-                input("Book ID: ")
-            )
+        elif choice == 11:
 
-            member_id = int(
-                input("Member ID: ")
-            )
+            print("\nBORROW BOOK")
+
+            book_id = get_integer("Book ID: ")
+
+            member_id = get_integer("Member ID: ")
 
             borrow_book(
                 book_id,
                 member_id
             )
 
-        elif choice == "12":
+            pause()
 
-            loan_id = int(
-                input("Loan ID: ")
-            )
+        elif choice == 12:
+
+            print("\nRETURN BOOK")
+
+            loan_id = get_integer("Loan ID: ")
 
             return_book(
                 loan_id
             )
 
-        elif choice == "13":
+            pause()
+
+        elif choice == 13:
+
+            print("\nLIST ACTIVE LOANS")
 
             list_active_loans()
 
-        elif choice == "14":
+            pause()
+
+        elif choice == 14:
+
+            print("\nLIST LOAN HISTORY")
 
             list_loan_history()
+
+            pause()
         
-        elif choice == "0":
+        elif choice == 0:
 
             print("Program terminated.")
+
             break
 
         else:
 
-            print("Invalid option.")
+            print("Invalid menu option.")
+
+            pause()
 
 
 if __name__ == "__main__":
